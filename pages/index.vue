@@ -18,7 +18,11 @@
     },
     methods: {
       async getPokemon() {
-        await this.$store.dispatch('pokemon/getPokemon', this.sendingPokemon)
+        try {
+          await this.$store.dispatch('pokemon/getPokemon', this.sendingPokemon)
+        } catch (e) {
+          this.sendingPokemon = "not found"
+        }
       }
     },
     computed: mapState({
